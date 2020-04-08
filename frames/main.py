@@ -1,11 +1,12 @@
 from tkinter import Frame, Label, Button, Entry, W, E, CENTER, TOP
 
-class Main(Frame):
 
+class Main(Frame):
     title = "Main"
 
     def __init__(self, parent, controller, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
+
         self.parent = parent
         self.controller = controller
 

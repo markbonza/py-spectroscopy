@@ -2,6 +2,8 @@ import time
 import threading
 from tkinter import Frame, Label, Button, Entry, IntVar, StringVar, END, N, S, W, E, OptionMenu, messagebox, LEFT, BOTH, RIGHT
 
+from classes.test import getRandom
+
 from lib.plot import Plot, Demo
 from matplotlib.figure import Figure
 import matplotlib.animation as animation
@@ -11,6 +13,7 @@ import matplotlib
 matplotlib.use('TkAgg')
 
 class Test(Frame):
+    debug = True
     title = "Execute Test"
 
     parameters = {}
@@ -55,10 +58,22 @@ class Test(Frame):
         self.ax1 = fig.add_subplot(1,1,1)
 
         scatter3 = FigureCanvasTkAgg(fig, self.plotframe)
-        scatter3.get_tk_widget().pack(side=LEFT, fill=BOTH)
+        scatter3.get_tk_widget().grid(row=0, column=0, sticky=(N, S, E, W))#.pack(side=LEFT, fill=BOTH)
 
-        self.ani=animation.FuncAnimation(fig, self.animate, interval=test_interval)
+        if self.debug:
+            Button(self.plotframe, text="Test", command=lambda: self.test()).grid(row=1, column=0, sticky=(N, S, E, W))
+
+        #self.ani=animation.FuncAnimation(fig, self.animate, interval=test_interval)
         #plt.show()
+
+    def test(self):
+        measurement = getRandom()
+
+        p = Demo()
+        res = p.test(measurement)
+
+        self.ax1.scatter(res.x, res.y, color=res.colors,s=1)
+        self.ax1.set_xticks(res.wl)
 
     def animate(self, i):
         

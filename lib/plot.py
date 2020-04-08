@@ -109,8 +109,13 @@ class Demo(Plot):
     def __init__(self, *args, **kwargs):
         Plot.__init__(self, *args, **kwargs)
 
-    def test(self):
-        measurements = random.choice(self.measurements)
+    def test(self, measurements = None):
+        if not measurements:
+            measurements = random.choice(self.measurements)
+
+        if not isinstance(measurements, (np.ndarray, np.generic) ):
+            measurements = np.array(measurements)
+
         data = np.hstack((self.channels[:,np.newaxis],measurements[:,np.newaxis]))
         data=data[data[:,0].argsort()]
 
@@ -120,7 +125,8 @@ class Demo(Plot):
         f = Rbf(wl, A, function='multiquadric', epsilon=np.sqrt(2.0)*self.sig)
 
         x = np.linspace(350,1000,10000)
-        y = f(x)
+        print(x)
+        y = f(1)
 
         y = np.where(y<0, 0.0*y, y)
         y = np.where(x <= wl[0], A[0]*self.g(x,wl[0]), y)
