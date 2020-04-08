@@ -1,2 +1,5 @@
 # py-spectroscopy
-Plotting App
+Using Tkinter, matplotlib and etc
+
+
+![](images/test.PNG)

@@ -1,10 +1,10 @@
 import tkinter as tk
-from tkinter.ttk import Progressbar
+from tkinter.ttk import Progressbar, Style
 from tkinter import font as tkfont, Menu
 from classes.utils import *
 
 from frames.main import Main
-from frames.testing import Testing
+from frames.setup import Setup
 
 class App(tk.Tk):
 
@@ -45,7 +45,7 @@ class App(tk.Tk):
     def start(self):
         menubar = Menu(self)
         menubar.add_command(label="Main", command=lambda: self.show_frame(Main))
-        menubar.add_command(label="Testing", command=lambda: self.show_frame(Testing))
+        menubar.add_command(label="Testing", command=lambda: self.show_frame(Setup))
         menubar.add_command(label="Training")
         menubar.add_command(label="Quit", command=self.quit)
         self.config(menu=menubar)

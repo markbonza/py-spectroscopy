@@ -3,9 +3,9 @@ from classes.inputs import IntEntry
 
 from .execute import Test
 
-class Testing(Frame):
+class Setup(Frame):
 
-    title = "Testing"
+    title = "Setup"
 
     def __init__(self, parent, controller, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
